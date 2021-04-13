@@ -12,22 +12,6 @@
   z-index: 1;
 }
 
-
-.popup__container::before {
-  content: " ";
-  background-image: url(../../../images/icons/Close_Icon.svg);
-  background-size: cover;
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  top: -11%;
-  right: -8%;
-}
-
-.popup__container:hover::before {
-  opacity: 0.6;
-}
-
 @media screen and (max-width: 767px) {
   .popup__container {
     width: 282px;
@@ -36,13 +20,5 @@
     margin-top: 0;
     left: 19px;
     top: 123px;
-  }
-
-  .popup__container::before {
-    width: 26px;
-    height: 26px;
-    position: absolute;
-    right: -4px;
-    top: -34px;
   }
 }
