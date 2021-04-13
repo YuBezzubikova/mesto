@@ -1,0 +1,23 @@
+.profile__info {
+  min-width: 336px;
+  min-height: 73px;
+  margin-top: 22px;
+  margin-bottom: 25px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  column-gap: 18px;
+  row-gap: 16px;
+  align-items: baseline;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__info {
+    min-width: 282px;
+    min-height: 54px;
+    margin-top: 26px;
+    margin-bottom: 36px;
+    gap: 10px;
+    grid-template-columns: 189px 18px;
+    justify-content: center;
+  }
+}
