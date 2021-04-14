@@ -10,12 +10,11 @@
 }
 
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1279px) {
   .profile {
     max-width: 282px;
     min-height: 286px;
     padding-top: 42px;
-    margin-bottom: 51px;
     flex-direction: column;
   }
 }
