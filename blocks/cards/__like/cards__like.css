@@ -4,6 +4,7 @@
   border: 0;
   background: none;
   background-image: url(../../../images/icons/heart.svg);
+  background-size: contain;
   width: 22px;
   height: 19px;
   margin-right: 15px;
@@ -16,4 +17,8 @@
 
 .cards__like:active {
   background-image: url(../../../images/icons/black_heart.svg);
+}
+
+.cards__like:focus {
+  outline: 0;
 }

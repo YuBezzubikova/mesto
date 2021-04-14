@@ -12,16 +12,17 @@
         </div>
       </header>
       <main class="main">
+        <div class="content-container">
         <section class="profile">
           <div class="profile__block">
             <img class="profile__avatar" src="./images/Avatar.png" alt="фотография пользователя">
             <div class="profile__info">
               <h1 class="profile__header">Жак-Ив Кусто</h1>
-              <button class="profile__edit-button" type="button"></button>
+              <button class="profile__edit-button" type="button" aria-label="Edit"></button>
               <p class="profile__description">Исследователь океана</p>
             </div>
           </div>
-          <button class="profile__add-button" type="button"></button>
+          <button class="profile__add-button" type="button" aria-label="Add"></button>
         </section>
         <section class="cards">
           <ul class="cards__list">
@@ -29,56 +30,57 @@
               <img class="cards__image" alt="фото старинной башна в Карачаевске" src="./images/karachaevsk.jpg">
               <div class="cards__info">
                 <h2 class="cards__name">Карачаевск</h2>
-                <button class="cards__like" type="button"></button>
+                <button class="cards__like" type="button" aria-label="Like"></button>
               </div>
             </li>
             <li class="cards__item">
               <img class="cards__image" alt="фото с видом на Эльбрус" src="./images/elbrus.jpg">
               <div class="cards__info">
                 <h2 class="cards__name">Гора Эльбрус</h2>
-                <button class="cards__like" type="button"></button>
+                <button class="cards__like" type="button" aria-label="Like"></button>
               </div>
             </li>
             <li class="cards__item">
               <img class="cards__image" alt="фото Домбая" src="./images/dombay.jpg">
               <div class="cards__info">
                 <h2 class="cards__name">Домбай</h2>
-                <button class="cards__like" type="button"></button>
+                <button class="cards__like" type="button" aria-label="Like"></button>
               </div>
             </li>
             <li class="cards__item">
               <img class="cards__image" alt="фото с видом на Эльбрус" src="./images/elbrus.jpg">
               <div class="cards__info">
                 <h2 class="cards__name">Гора Эльбрус</h2>
-                <button class="cards__like" type="button"></button>
+                <button class="cards__like" type="button" aria-label="Like"></button>
               </div>
             </li>
             <li class="cards__item">
               <img class="cards__image" alt="фото Домбая" src="./images/dombay.jpg">
               <div class="cards__info">
                 <h2 class="cards__name">Домбай</h2>
-                <button class="cards__like" type="button"></button>
+                <button class="cards__like" type="button" aria-label="Like"></button>
               </div>
             </li>
             <li class="cards__item">
               <img class="cards__image" alt="фото старинной башна в Карачаевске" src="./images/karachaevsk.jpg">
               <div class="cards__info">
                 <h2 class="cards__name">Карачаево-Ч...</h2>
-                <button class="cards__like" type="button"></button>
+                <button class="cards__like" type="button" aria-label="Like"></button>
               </div>
             </li>
           </ul>
         </section>
+        </div>
       </main>
       <footer class="footer">
-        <p class="footer__copyrights">© 2020 Mesto Russia</p>
+        <p class="footer__copyrights">&copy; 2020 Mesto Russia</p>
       </footer>
 
       <div class="popup">
         <div class="popup__container">
-          <button class="popup__close" type="button"></button>
+          <button class="popup__close" type="button" aria-label="Close"></button>
           <h2 class="popup__heading">Редактировать профиль</h2>
-          <form class="popup__form" name="Редактирование профиля">
+          <form class="popup__form" name="Edit-form">
             <input type="text" class="popup__field" id="name" name="name">
             <input type="text" class="popup__field" id="description" name="description">
             <input type="submit" class="popup__button" value="Сохранить">
