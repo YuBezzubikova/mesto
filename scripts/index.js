@@ -19,7 +19,7 @@ function closePopup() {
   buttonClose.removeEventListener('click', closePopup);
 }
 
-function formSubmitHandler (evt) {
+function formSubmitHandler(evt) {
     evt.preventDefault();
     nameProfile.textContent = nameInput.value;
     jobProfile.textContent = jobInput.value;
