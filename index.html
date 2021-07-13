@@ -25,48 +25,16 @@
         </section>
         <section class="cards">
           <ul class="cards__list">
-            <li class="cards__item">
-              <img class="cards__image" alt="фото старинной башна в Карачаевске" src="./images/karachaevsk.jpg">
-              <div class="cards__info">
-                <h2 class="cards__name">Карачаевск</h2>
-                <button class="cards__like" type="button" aria-label="поставить like"></button>
-              </div>
-            </li>
-            <li class="cards__item">
-              <img class="cards__image" alt="фото с видом на Эльбрус" src="./images/elbrus.jpg">
-              <div class="cards__info">
-                <h2 class="cards__name">Гора Эльбрус</h2>
-                <button class="cards__like" type="button" aria-label="поставить like"></button>
-              </div>
-            </li>
-            <li class="cards__item">
-              <img class="cards__image" alt="фото Домбая" src="./images/dombay.jpg">
-              <div class="cards__info">
-                <h2 class="cards__name">Домбай</h2>
-                <button class="cards__like" type="button" aria-label="поставить like"></button>
-              </div>
-            </li>
-            <li class="cards__item">
-              <img class="cards__image" alt="фото с видом на Эльбрус" src="./images/elbrus.jpg">
-              <div class="cards__info">
-                <h2 class="cards__name">Гора Эльбрус</h2>
-                <button class="cards__like" type="button" aria-label="поставить like"></button>
-              </div>
-            </li>
-            <li class="cards__item">
-              <img class="cards__image" alt="фото Домбая" src="./images/dombay.jpg">
-              <div class="cards__info">
-                <h2 class="cards__name">Домбай</h2>
-                <button class="cards__like" type="button" aria-label="поставить like"></button>
-              </div>
-            </li>
-            <li class="cards__item">
-              <img class="cards__image" alt="фото старинной башна в Карачаевске" src="./images/karachaevsk.jpg">
-              <div class="cards__info">
-                <h2 class="cards__name">Карачаево-Ч...</h2>
-                <button class="cards__like" type="button" aria-label="поставить like"></button>
-              </div>
-            </li>
+            <template id="cards-item-tpl">
+              <li class="cards__item">
+                <button class="cards__delete" type="button" aria-label="удалить фото"></button>
+                <img class="cards__image" alt="" src="">
+                <div class="cards__info">
+                  <h2 class="cards__name"></h2>
+                  <button class="cards__like" type="button" aria-label="поставить like"></button>
+                </div>
+              </li>
+            </template>
           </ul>
         </section>
       </main>
@@ -74,17 +42,39 @@
         <p class="footer__copyrights">&copy; 2020 Mesto Russia</p>
       </footer>
 
+
       <div class="popup">
         <div class="popup__container">
           <button class="popup__close" type="button" aria-label="закрыть"></button>
+          <div class="popup__content"></div>
+        </div>
+      </div>
+
+
+      <template id="profile-form">
           <h2 class="popup__heading">Редактировать профиль</h2>
           <form class="popup__form" name="Edit-form">
             <input type="text" class="popup__field" id="name" name="name">
             <input type="text" class="popup__field" id="description" name="description">
             <input type="submit" class="popup__button" value="Сохранить">
           </form>
+      </template>
+
+      <template id="add-item-form">
+        <h2 class="popup__heading">Добавить карточку</h2>
+        <form class="popup__form" name="Edit-form">
+          <input type="text" class="popup__field" id="title" name="title" placeholder="Название">
+          <input type="text" class="popup__field" id="link" name="link" placeholder="Ссылка на картинку">
+          <input type="submit" class="popup__button" value="Добавить">
+        </form>
+      </template>
+
+      <template id="preview">
+        <div class="preview">
+          <img class="preview__image" src="" alt="">
+          <p class="preview__text"></p>
         </div>
-      </div>
+      </template>
       <script src="./scripts/index.js"></script>
     </body>
 </html>
