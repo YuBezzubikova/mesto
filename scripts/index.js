@@ -132,7 +132,6 @@ function showImage(evt) {
   openPopup(2);
 }
 
-createCardItem(initialCards[0].name, initialCards[0].link)
 profileEditButton.addEventListener('click', showProfileForm);
 buttonAddCardItem.addEventListener('click', showAddItemForm);
 
