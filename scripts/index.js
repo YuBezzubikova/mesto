@@ -32,13 +32,10 @@ const buttonAddCardItem = document.querySelector('.profile__add-button');
 const nameProfile = document.querySelector('.profile__header');
 const jobProfile = document.querySelector('.profile__description');
 
-function openPopup(innerElement) {
-  const popup = document.querySelector('.popup');
+function openPopup(index) {
+  const popups = document.querySelectorAll('.popup');
+  const popup = popups[index];
   const closeButton = popup.querySelector('.popup__close');
-
-  const popupContent = popup.querySelector('.popup__content');
-  popupContent.innerHTML = '';
-  popupContent.append(innerElement);
 
   closeButton.addEventListener('click', closePopup);
   popup.classList.add('popup_opened');
@@ -52,16 +49,14 @@ function closePopup(evt) {
 }
 
 function showProfileForm() {
-  const profileFormTpl = document.querySelector('#profile-form');
-  const profileHtmlFragment = profileFormTpl.content.cloneNode(true);
-  const profileFrom = profileHtmlFragment.querySelector('.popup__form');
+  const profileForm = document.querySelector('#profile-form');
   const profileInfo = document.querySelector('.profile__info');
 
-  profileHtmlFragment.querySelector('#name').value = profileInfo.querySelector('.profile__header').textContent;
-  profileHtmlFragment.querySelector('#description').value = profileInfo.querySelector('.profile__description').textContent;
+  profileForm.querySelector('#name').value = profileInfo.querySelector('.profile__header').textContent;
+  profileForm.querySelector('#description').value = profileInfo.querySelector('.profile__description').textContent;
 
-  profileFrom.addEventListener('submit', profileFormSubmitHandler)
-  openPopup(profileHtmlFragment);
+  profileForm.addEventListener('submit', profileFormSubmitHandler)
+  openPopup(0);
 }
 
 function profileFormSubmitHandler(evt) {
@@ -72,20 +67,21 @@ function profileFormSubmitHandler(evt) {
 }
 
 function showAddItemForm() {
-  const addItemFormTpl = document.querySelector('#add-item-form');
-  const addItemHtmlFragment = addItemFormTpl.content.cloneNode(true);
-  const addItemForm = addItemHtmlFragment.querySelector('.popup__form')
+  const addItemForm = document.querySelector('#add-item-form')
 
   addItemForm.addEventListener('submit', addCardItemSubmitHandler)
-  openPopup(addItemHtmlFragment);
+  openPopup(1);
 }
 
 function addCardItemSubmitHandler(evt) {
   evt.preventDefault();
   const titleInput = evt.target.querySelector('#title');
   const linkInput = evt.target.querySelector('#link');
-  let cardItem = createCardItem(titleInput.value, linkInput.value);
+  const cardItem = createCardItem(titleInput.value, linkInput.value);
+  
   cardList.prepend(cardItem);
+  titleInput.value = '';
+  linkInput.value = '';
   closePopup(evt);
 }
 
@@ -125,8 +121,7 @@ function deleteCardItem(evt) {
 }
 
 function showImage(evt) {
-  const previewTpl = document.querySelector('#preview');
-  const preview = previewTpl.content.querySelector('.preview').cloneNode(true);
+  const preview = document.querySelector('#preview');
   const previewImage = preview.querySelector('.preview__image');
   const previewText = preview.querySelector('.preview__text');
 
@@ -134,7 +129,7 @@ function showImage(evt) {
   previewImage.alt = evt.target.alt
   previewText.innerText = evt.target.alt
 
-  openPopup(preview);
+  openPopup(2);
 }
 
 createCardItem(initialCards[0].name, initialCards[0].link)
