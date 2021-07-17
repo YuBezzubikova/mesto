@@ -32,17 +32,32 @@ const buttonAddCardItem = document.querySelector('.profile__add-button');
 const nameProfile = document.querySelector('.profile__header');
 const jobProfile = document.querySelector('.profile__description');
 
-const profileForm = document.querySelector('#profile-form');
-const addItemForm = document.querySelector('#add-item-form')
+const popupProfilePopup = document.querySelector('.popup_type_profile');
+const profileForm = popupProfilePopup.querySelector('#profile-form');
+const profileNameInput = profileForm.querySelector('#name');
+const profileInfoInput = profileForm.querySelector('#description');
+
+const addItemPopup = document.querySelector('.popup_type_card');
+const addItemForm = addItemPopup.querySelector('#add-item-form');
+const titleInput = addItemForm.querySelector('#title'); 
+const linkInput = addItemForm.querySelector('#link');
+const addItemButton = addItemForm.querySelector('.popup__button');
+
+const preview = document.querySelector('#preview');
+const popup = preview.closest('.popup');
+const previewImage = preview.querySelector('.preview__image');
+const previewText = preview.querySelector('.preview__text');
 
 const closePopupButtons = document.querySelectorAll('.popup__close');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keyup', closePopupByEsc);
   popup.addEventListener('click', closePopupByOverlay);
 }
 
 function closePopup(popup) {
+  document.removeEventListener('keyup', closePopupByEsc);
   popup.removeEventListener('click', closePopupByOverlay);
   popup.closest('.popup').classList.remove('popup_opened');
 }
@@ -52,19 +67,15 @@ function closePopupByOverlay(evt) {
 }
 
 function closePopupByEsc(evt) {
-  const popup = document.querySelector('.popup_opened');
-  if (popup && evt.key === 'Escape') {
+  if (evt.key === 'Escape') {
+    const popup = document.querySelector('.popup_opened');
     closePopup(popup);
   }
 }
 
 function showProfileForm() {
-  const profileInfo = document.querySelector('.profile__info');
-  const profileNameInput = profileForm.querySelector('#name');
-  const profileInfoInput = profileForm.querySelector('#description');
-
-  profileNameInput.value = profileInfo.querySelector('.profile__header').textContent;
-  profileInfoInput.value = profileInfo.querySelector('.profile__description').textContent;
+  profileNameInput.value = nameProfile.textContent;
+  profileInfoInput.value = jobProfile.textContent;
 
   const event = new Event('input', {
     bubbles: true,
@@ -73,21 +84,30 @@ function showProfileForm() {
 
   profileNameInput.dispatchEvent(event);
   profileInfoInput.dispatchEvent(event);
-  openPopup(profileForm.closest('.popup'));
+  openPopup(popupProfilePopup);
 }
 
 function profileFormSubmitHandler(evt) {
   evt.preventDefault();
 
-  nameProfile.textContent = evt.target.querySelector('#name').value;
-  jobProfile.textContent = evt.target.querySelector('#description').value;
+  nameProfile.textContent = profileNameInput.value;
+  jobProfile.textContent = profileInfoInput.value;
 
-  closePopup(profileForm.closest('.popup'));
+  closePopup(popupProfilePopup);
 }
 
 function showAddItemForm() {
-  const popup = addItemForm.closest('.popup');
-  openPopup(popup);
+  enableValidation(
+    {
+      formSelector: '.popup__form',
+      inputSelector: '.popup__field',
+      submitButtonSelector: '.popup__button',
+      inactiveButtonClass: 'popup__button_disabled',
+      inputErrorClass: 'popup__input_type_error',
+      errorClass: 'popup__error_visible'
+    }
+  );
+  openPopup(addItemPopup);
 }
 
 function addCardItemSubmitHandler(evt) {
@@ -98,7 +118,7 @@ function addCardItemSubmitHandler(evt) {
   
   cardList.prepend(cardItem);
   addItemForm.reset();
-  closePopup(addItemForm.closest('.popup'));
+  closePopup(addItemPopup);
 }
 
 function initCardList() {
@@ -120,7 +140,7 @@ function createCardItem(name, link) {
   cardItemImage.src = link;
   cardItemImage.alt = name;
 
-  cardItemImage.addEventListener('click', showImage);
+  cardItemImage.addEventListener('click',  () => showImage(link, name));
   cardItemLikeButton.addEventListener('click', likeCardItem);
   cardItemDeleteButton.addEventListener('click', deleteCardItem);
 
@@ -136,15 +156,10 @@ function deleteCardItem(evt) {
   evt.target.closest('.cards__item').remove();
 }
 
-function showImage(evt) {
-  const preview = document.querySelector('#preview');
-  const popup = preview.closest('.popup');
-  const previewImage = preview.querySelector('.preview__image');
-  const previewText = preview.querySelector('.preview__text');
-
-  previewImage.src = evt.target.src
-  previewImage.alt = evt.target.alt
-  previewText.textContent = evt.target.alt
+function showImage(link, name) {
+  previewImage.src =link
+  previewImage.alt = name
+  previewText.textContent = name
 
   openPopup(popup);
 }

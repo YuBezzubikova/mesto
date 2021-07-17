@@ -25,8 +25,6 @@ const checkInputValidity = (config, formElement, inputElement) => {
 };
 
 const hasInvalidInputList = (inputList) => {
-    inputList.forEach((inputElement) => console.log(inputElement.errorMessage));
-    
     return inputList.some(inputElement => !inputElement.validity.valid)
 };
 
