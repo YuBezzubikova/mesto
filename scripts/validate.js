@@ -31,13 +31,22 @@ const hasInvalidInputList = (inputList) => {
 const toggleButtonState = (config, buttonElement, inputList) => {
     const { inactiveButtonClass } =  config;
     if (hasInvalidInputList(inputList)) {
-        buttonElement.disabled = true
-        buttonElement.classList.add(inactiveButtonClass);
+        disableButton(buttonElement, inactiveButtonClass);
     } else {
-        buttonElement.disabled = false
-        buttonElement.classList.remove(inactiveButtonClass);
+        enableButton(buttonElement, inactiveButtonClass);
     }
 };
+
+const disableButton = (buttonElement, inactiveButtonClass) => {
+    buttonElement.disabled = true
+    buttonElement.classList.add(inactiveButtonClass);
+};
+
+const enableButton = (buttonElement, inactiveButtonClass) => {
+    buttonElement.disabled = false
+    buttonElement.classList.remove(inactiveButtonClass);
+};
+
 
 const setEventListeners = (config, formElement) => {
     const { inputSelector,  submitButtonSelector, ...restConfig } =  config;

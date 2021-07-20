@@ -60,6 +60,7 @@ function closePopup(popup) {
   document.removeEventListener('keyup', closePopupByEsc);
   popup.removeEventListener('click', closePopupByOverlay);
   popup.closest('.popup').classList.remove('popup_opened');
+  addItemForm.reset();
 }
 
 function closePopupByOverlay(evt) {
@@ -97,23 +98,12 @@ function profileFormSubmitHandler(evt) {
 }
 
 function showAddItemForm() {
-  enableValidation(
-    {
-      formSelector: '.popup__form',
-      inputSelector: '.popup__field',
-      submitButtonSelector: '.popup__button',
-      inactiveButtonClass: 'popup__button_disabled',
-      inputErrorClass: 'popup__input_type_error',
-      errorClass: 'popup__error_visible'
-    }
-  );
+  disableButton(addItemButton, 'popup__button_disabled');
   openPopup(addItemPopup);
 }
 
 function addCardItemSubmitHandler(evt) {
   evt.preventDefault();
-  const titleInput = evt.target.querySelector('#title');
-  const linkInput = evt.target.querySelector('#link');
   const cardItem = createCardItem(titleInput.value, linkInput.value);
   
   cardList.prepend(cardItem);
