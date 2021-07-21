@@ -60,7 +60,6 @@ function closePopup(popup) {
   document.removeEventListener('keyup', closePopupByEsc);
   popup.removeEventListener('click', closePopupByOverlay);
   popup.closest('.popup').classList.remove('popup_opened');
-  addItemForm.reset();
 }
 
 function closePopupByOverlay(evt) {
@@ -98,6 +97,7 @@ function profileFormSubmitHandler(evt) {
 }
 
 function showAddItemForm() {
+  addItemForm.reset();
   disableButton(addItemButton, 'popup__button_disabled');
   openPopup(addItemPopup);
 }
